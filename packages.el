@@ -2,7 +2,6 @@
   '(
     (writeroom-mode :location elpa)
     (wc-mode :location elpa)
-    (smart-mode-line :location elpa)
   )
   "The list of Lisp packages required by the author-mode layer.
 
@@ -39,8 +38,4 @@ Each entry is either:
 
 (defun author-mode/init-wc-mode ()
   (use-package wc-mode
-    :defer t))
-
-(defun author-mode/init-smart-mode-line-mode ()
-  (use-package smart-mode-line
     :defer t))
