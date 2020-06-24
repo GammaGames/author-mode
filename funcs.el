@@ -11,14 +11,64 @@
 (defun author-mode ()
   (when (and (stringp buffer-file-name)
     (string-match "\\.md\\'" buffer-file-name))
+      (setq markdown-header-scaling t)
       (set-frame-font "iA Writer Duospace 14" nil t)
+
       (writeroom-mode)
       (setq writeroom-width 88)
       (setq writeroom-mode-line-toggle-position 'mode-line-format)
       (visual-line-mode)
       (writeroom-toggle-mode-line)
-      (display-time-mode)
-      (line-number-mode)
       (wc-mode)
-      (setq wc-modeline-format "%tw words, %w")
+
+      (setq mode-line-align-left
+        '(:propertize (:eval (propertize "%b " 'face
+          (let ((face (buffer-modified-p)))
+            (if face 'bold-italic 'bold))
+          'help-echo (buffer-file-name)))))
+      (setq mode-line-align-middle
+        '(:propertize (:eval (format-time-string "%l:%M %p")) face bold))
+      (setq mode-line-align-right
+        '(:propertize (:eval (propertize (wc-format-modeline-string "%tw words, %w"))) face bold-italic))
+      (setq mode-line-format
+                (list
+                  mode-line-align-left
+                  '(:eval (mode-line-fill-center 'mode-line
+                                                (reserve-left/middle)))
+                  mode-line-align-middle
+                  '(:eval
+                    (mode-line-fill-right 'mode-line
+                                          (reserve-middle/right)))
+                  mode-line-align-right
+                ))
     ))
+
+;; Taken from https://emacs.stackexchange.com/a/16658/29319
+(defun mode-line-fill-right (face reserve)
+  "Return empty space using FACE and leaving RESERVE space on the right."
+  (unless reserve
+    (setq reserve 20))
+  (when (and window-system (eq 'right (get-scroll-bar-mode)))
+    (setq reserve (- reserve 3)))
+  (propertize " "
+              'display `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))
+              'face face))
+
+(defun mode-line-fill-center (face reserve)
+  "Return empty space using FACE to the center of remaining space leaving RESERVE space on the right."
+  (unless reserve
+    (setq reserve 20))
+  (when (and window-system (eq 'right (get-scroll-bar-mode)))
+    (setq reserve (- reserve 3)))
+  (propertize " "
+              'display `((space :align-to (- (+ center (.5 . right-margin)) ,reserve
+                                            (.5 . left-margin))))
+              'face face))
+
+(defconst RIGHT_PADDING 1)
+
+(defun reserve-left/middle ()
+  (/ (length (format-mode-line mode-line-align-middle)) 2))
+
+(defun reserve-middle/right ()
+  (+ RIGHT_PADDING (length (format-mode-line mode-line-align-right))))
