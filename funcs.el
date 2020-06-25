@@ -18,18 +18,19 @@
       (setq writeroom-width 88)
       (setq writeroom-mode-line-toggle-position 'mode-line-format)
       (visual-line-mode)
+      (setq line-move-visual t)
       (writeroom-toggle-mode-line)
       (wc-mode)
 
       (setq mode-line-align-left
+        '(:propertize (:eval (propertize (wc-format-modeline-string "%tw words, %w"))) face bold-italic))
+      (setq mode-line-align-middle
         '(:propertize (:eval (propertize "%b " 'face
           (let ((face (buffer-modified-p)))
             (if face 'bold-italic 'bold))
           'help-echo (buffer-file-name)))))
-      (setq mode-line-align-middle
-        '(:propertize (:eval (format-time-string "%l:%M %p")) face bold))
       (setq mode-line-align-right
-        '(:propertize (:eval (propertize (wc-format-modeline-string "%tw words, %w"))) face bold-italic))
+        '(:propertize (:eval (format-time-string "%l:%M %p")) face bold))
       (setq mode-line-format
                 (list
                   mode-line-align-left
