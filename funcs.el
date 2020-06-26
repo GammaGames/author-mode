@@ -26,19 +26,13 @@
         (list
           '(:propertize (:eval (propertize (wc-format-modeline-string "%tw words, %w - "))) face bold)
           '(:propertize (:eval (propertize
-            (if (< (string-to-number (wc-format-modeline-string "%tw ")) 101)
-              "Micro Fiction"
-              (if (< (string-to-number (wc-format-modeline-string "%tw ")) 1000)
-                "Flash Fiction"
-                (if (< (string-to-number (wc-format-modeline-string "%tw ")) 7500)
-                  "Short Story"
-                  (if (< (string-to-number (wc-format-modeline-string "%tw ")) 20000)
-                    "Novelette"
-                      (if (< (string-to-number (wc-format-modeline-string "%tw ")) 50000)
-                        "Novella"
-                        (if (< (string-to-number (wc-format-modeline-string "%tw ")) 110000)
-                          "Novel"
-                          "Epic")))))))) face bold-italic)))
+            (cond ((< (string-to-number (wc-format-modeline-string "%tw ")) 101) "Micro Fiction")
+                  ((< (string-to-number (wc-format-modeline-string "%tw ")) 1000) "Flash Fiction")
+                  ((< (string-to-number (wc-format-modeline-string "%tw ")) 7500) "Short Story")
+                  ((< (string-to-number (wc-format-modeline-string "%tw ")) 20000) "Novelette")
+                  ((< (string-to-number (wc-format-modeline-string "%tw ")) 50000) "Novella")
+                  ((< (string-to-number (wc-format-modeline-string "%tw ")) 110000) "Novel")
+                  (t "Epic")))) face bold-italic)))
       (setq mode-line-align-middle
         '(:propertize (:eval (propertize "%b " 'face
           (let ((face (buffer-modified-p)))
