@@ -11,7 +11,7 @@
 (defun author-mode ()
   (when (and (stringp buffer-file-name)
     (string-match "\\.md\\'" buffer-file-name))
-      (spacemacs/toggle-highlight-current-line-globally-on)
+      (spacemacs/toggle-highlight-current-line-globally-off)
       (setq markdown-header-scaling t)
       (set-frame-font "iA Writer Duospace 14" nil t)
 
