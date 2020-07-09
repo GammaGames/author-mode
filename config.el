@@ -1,12 +1,12 @@
 (setq markdown-header-scaling t)
 (set-frame-font "iA Writer Duospace 14" nil t)
 
+(setq git-gutter+-added "green")
+(setq git-gutter+-added-sign "▒")
 (setq git-gutter+-modified "yellow")
 (setq git-gutter+-modified-sign "░")
-(setq git-gutter+-added "green")
-(setq git-gutter+-added-sign "░")
 (setq git-gutter+-deleted "red")
-(setq git-gutter+-deleted-sign "░")
+(setq git-gutter+-deleted-sign "▓")
 
 (setq writeroom-width 88)
 (setq writeroom-mode-line-toggle-position 'mode-line-format)
