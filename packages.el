@@ -1,7 +1,7 @@
 (defconst author-mode-packages
   '(
     (writeroom-mode :location elpa)
-    (git-gutter-fringe+ :location elpa)
+    ;; (git-gutter-fringe+ :location elpa)
     (wc-mode :location elpa)
   )
   "The list of Lisp packages required by the author-mode layer.
@@ -41,6 +41,6 @@ Each entry is either:
   (use-package wc-mode
     :defer t))
 
-(defun author-mode/init-git-gutter-fringe+ ()
-  (use-package git-gutter-fringe+
-    :defer t))
+;; (defun author-mode/init-git-gutter-fringe+ ()
+;;   (use-package git-gutter-fringe+
+;;     :defer t))

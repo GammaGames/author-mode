@@ -12,7 +12,7 @@
   (when (and (stringp buffer-file-name)
     (string-match "\\.md\\'" buffer-file-name))
       (spacemacs/toggle-highlight-current-line-globally-off)
-      (git-gutter+-mode)
+      ;; (git-gutter+-mode)
       (writeroom-mode)
       (spacemacs/toggle-visual-line-navigation-on)
       (writeroom-toggle-mode-line)
