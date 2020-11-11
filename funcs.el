@@ -7,12 +7,10 @@
       author-mode
     )))
 
-
 (defun author-mode ()
   (when (and (stringp buffer-file-name)
     (string-match "\\.md\\'" buffer-file-name))
       (spacemacs/toggle-highlight-current-line-globally-off)
-      ;; (git-gutter+-mode)
       (writeroom-mode)
       (spacemacs/toggle-visual-line-navigation-on)
       (writeroom-toggle-mode-line)
@@ -21,12 +19,10 @@
       (setq mode-line-format
                 (list
                   mode-line-align-left
-                  '(:eval (mode-line-fill-center 'mode-line
-                                                (reserve-left/middle)))
+                  '(:eval (mode-line-fill-center 'mode-line (reserve-left/middle)))
                   mode-line-align-middle
                   '(:eval
-                    (mode-line-fill-right 'mode-line
-                                          (reserve-middle/right)))
+                    (mode-line-fill-right 'mode-line (reserve-middle/right)))
                   mode-line-align-right
                 ))
     ))
