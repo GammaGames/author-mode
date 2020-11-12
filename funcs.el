@@ -15,6 +15,7 @@
       (spacemacs/toggle-visual-line-navigation-on)
       (writeroom-toggle-mode-line)
       (wc-mode)
+      (blink-cursor-mode 0)
 
       (setq mode-line-format
                 (list
@@ -29,6 +30,8 @@
     ))
 
 (defun paper-theme ()
+  ;; doens't work??
+    (set-face-foreground 'mode-line "#ffffff")
     (set-face-background 'mode-line "#000000")
   )
 
