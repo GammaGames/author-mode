@@ -3,7 +3,6 @@
 
 (setq writeroom-width 0.75)
 (setq writeroom-mode-line-toggle-position 'mode-line-format)
-(set-face-background 'mode-line "black")
 
 (setq mode-line-align-left
   (list

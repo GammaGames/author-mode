@@ -25,7 +25,12 @@
                     (mode-line-fill-right 'mode-line (reserve-middle/right)))
                   mode-line-align-right
                 ))
+      (paper-theme)
     ))
+
+(defun paper-theme ()
+    (set-face-background 'mode-line "#ffffff")
+  )
 
 ;; Taken from https://emacs.stackexchange.com/a/16658/29319
 (defun mode-line-fill-right (face reserve)
