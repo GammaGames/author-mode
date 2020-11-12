@@ -29,7 +29,7 @@
     ))
 
 (defun paper-theme ()
-    (set-face-background 'mode-line "#ffffff")
+    (set-face-background 'mode-line "#000000")
   )
 
 ;; Taken from https://emacs.stackexchange.com/a/16658/29319
